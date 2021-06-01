@@ -282,7 +282,6 @@ class Board extends React.Component {
         } else {
             this.setState({clicked: false})
         }
-        console.log(this.state.history)
         this.isQueen()
     }
 
@@ -317,7 +316,12 @@ class Board extends React.Component {
         for (let i=0; i<8; i++) {
             newArray.push(copyAll[i].slice())
         }
-        this.state.history.push(newArray)
+
+        const historyCopy = this.state.history.slice()
+        historyCopy.push(newArray)
+        this.setState({history: historyCopy})
+
+        //this.state.history.push(newArray)
         this.state.whichTurnHistory.push(!this.state.redTurn)
     }
 
