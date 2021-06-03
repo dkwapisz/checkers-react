@@ -55,6 +55,7 @@ class Timer extends React.Component {
         // eslint-disable-next-line
         this.state.isCounting = false
     }
+
 }
 
 class Square extends React.Component {
@@ -132,13 +133,23 @@ class Board extends React.Component {
         this.state.timerBlack.stop()
 
         setInterval(() => {
-            document.getElementById("redTimer").innerHTML = "Red Player Timer: " + Math.round(this.state.timerRed.render())
-            document.getElementById("blackTimer").innerHTML = "Black Player Timer: " + Math.round(this.state.timerBlack.render())
+
+            if (Math.round(this.state.timerRed.render()) % 60 < 10) {
+                document.getElementById("redTimer").innerHTML = "Red Player Timer: " + Math.floor(this.state.timerRed.render() / 60)  + ":0" + Math.round(this.state.timerRed.render()) % 60
+            } else {
+                document.getElementById("redTimer").innerHTML = "Red Player Timer: " + Math.floor(this.state.timerRed.render() / 60)  + ":" + Math.round(this.state.timerRed.render()) % 60
+            }
+
+            if (Math.round(this.state.timerBlack.render()) % 60 < 10) {
+                document.getElementById("blackTimer").innerHTML = "Black Player Timer: " + Math.floor(this.state.timerBlack.render() / 60)  + ":0" + Math.round(this.state.timerBlack.render()) % 60
+            } else {
+                document.getElementById("blackTimer").innerHTML = "Black Player Timer: " + Math.floor(this.state.timerBlack.render() / 60)  + ":" + Math.round(this.state.timerBlack.render()) % 60
+            }
 
             if (this.state.timerRed.render() === 0) {
                 alert("Game Over! Black wins!")
                 window.location.reload()
-            } else if (this.state.timerBlack.player === 0) {
+            } else if (this.state.timerBlack.render() === 0) {
                 alert("Game Over! Red wins!")
                 window.location.reload()
             }
