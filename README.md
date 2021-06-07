@@ -1,5 +1,7 @@
 # Projekt Warcaby - React
 
+Screeny z gry. :)
+
 # Timer
 Po odpaleniu gry, czas leci dla gracza czerwonego. 
 
